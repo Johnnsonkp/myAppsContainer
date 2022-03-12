@@ -11,6 +11,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
             placeholder="Basic usage" 
             className={props.className} 
             style={styles.searchBarStyle.display}
+            onChange={props.onChange}
         />
     )
 }
