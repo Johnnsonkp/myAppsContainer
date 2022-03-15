@@ -2,6 +2,8 @@ import './App.css';
 
 import React, {useEffect, useState} from 'react';
 
+import {AppstoreOutlined} from '@ant-design/icons';
+import { FetchResponse } from './App.modules';
 import { InputType } from './components/common/SearchBar/SearchBar.module';
 import { MyAppsComponent } from './pages/MyApps';
 import NavBar from './components/common/Nav';
@@ -10,26 +12,35 @@ import { SearchBar } from './components/common/SearchBar/SearchBar';
 
 const App: React.FC = () => {
   const [input, searchedInput] = useState<InputType['text']>()
-  const [apps, fetchApps] = useState<() => Promise<string>>()
+  const [apps, fetchApps] = useState<FetchResponse['results']>()
+  const [toggleSidePanel, setToggleSidePanel] = useState<boolean>(false)
 
+
+  useEffect(() => {
+    fetch('apps.json')
+      .then(response => response.json())
+      .then(response => fetchApps(response))
+      .catch(error => console.log(error));
+  }, [])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     searchedInput(e.target.value)
+    apps && apps.map((results) => {
+      console.log(results.title === e.target.value)
+    })
   }
-
-  useEffect(() => {
-    fetch('./apps.json', {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }).then((res) => res.json)
-    .then((data) => fetchApps(data))
-  }, [])
 
   return (
     <div className="App">
-      <NavBar searchBarComponent={<SearchBar onChange={(e) => handleSearchChange(e)}/>}/>
+      <NavBar 
+        searchBarComponent={<SearchBar onChange={(e) => handleSearchChange(e)}/>}
+        appSidePanelDisplay={<MyAppsComponent apps={apps}/>}
+        appsDisplayIcon={<AppstoreOutlined 
+          style={{ fontSize: '25px', color: '#08c', cursor: 'pointer' }}
+          onClick={() => setToggleSidePanel(!toggleSidePanel)}
+          />}
+        effect={toggleSidePanel}
+      />
       <PrimaryContainer 
         Component={<MyAppsComponent apps={apps}/>}
       />
