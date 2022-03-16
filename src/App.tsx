@@ -14,6 +14,7 @@ const App: React.FC = () => {
   const [input, searchedInput] = useState<InputType['text']>()
   const [apps, fetchApps] = useState<FetchResponse['results']>()
   const [toggleSidePanel, setToggleSidePanel] = useState<boolean>(false)
+  const [hover, isHover] = useState<boolean>(false)
 
 
   useEffect(() => {
@@ -36,9 +37,12 @@ const App: React.FC = () => {
         searchBarComponent={<SearchBar onChange={(e) => handleSearchChange(e)}/>}
         appSidePanelDisplay={<MyAppsComponent apps={apps}/>}
         appsDisplayIcon={<AppstoreOutlined 
-          style={{ fontSize: '25px', color: '#08c', cursor: 'pointer' }}
+          style={{ fontSize: '18px', cursor: 'pointer' }}
           onClick={() => setToggleSidePanel(!toggleSidePanel)}
+          onMouseEnter={() => isHover(true)}
+          onMouseLeave={() => isHover(false)}
           />}
+        setHover={hover}
         effect={toggleSidePanel}
       />
       <PrimaryContainer 

@@ -8,4 +8,5 @@ export interface NavBarProps {
     // onClick? : (e: React.MouseEvent<HTMLInputElement>) => void
     setEffect? : boolean | void
     effect?: boolean
+    setHover?:  React.SetStateAction<boolean> 
 }
