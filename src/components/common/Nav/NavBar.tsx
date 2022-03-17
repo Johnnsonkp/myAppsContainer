@@ -1,4 +1,5 @@
 import AppsLogo from './APPs.svg'
+import DisplayBadge from '../Badge';
 import { NavBarProps } from './NavBar.types';
 import React from 'react';
 import { navBarStyles } from './NavBar.styles';
@@ -9,8 +10,8 @@ const NavBar: React.FC<NavBarProps> = (props) => {
             <div style={props.setHover? navBarStyles.onMouseEnter : navBarStyles.onMouseLeave}>
                 {props.appsDisplayIcon}
                 <img src={AppsLogo} style={navBarStyles.AppLogo}/>
+                <span style={{marginLeft: '25px'}}>{props.NavMenu}</span>
             </div>
-            
                 {props.effect && <div style={navBarStyles.effectStyle}>
                         <span 
                             style={props.setHover? navBarStyles.onMouseEnter : navBarStyles.onMouseLeave}
@@ -19,17 +20,15 @@ const NavBar: React.FC<NavBarProps> = (props) => {
                         </span>
                         <h2 style={{paddingLeft: '10px'}}>Apps</h2>
                         <div style={{transform: 'scale(0.6)', display: 'flex', justifyContent: 'space-between', width: '100%', position: 'relative', left: '-15px'}}>
-                            
                             {props.appSidePanelDisplay}
                         </div>
                     </div>
                 }
-                {/* <img src={AppsLogo} style={navBarStyles.AppLogo}/> */}
-            <div>
+            <div style={{flex: '0.6'}}>
                 {props.searchBarComponent}
             </div>
             <div>
-                User
+                <DisplayBadge />
             </div>
         </div>
     )

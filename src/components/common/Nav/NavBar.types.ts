@@ -9,4 +9,5 @@ export interface NavBarProps {
     setEffect? : boolean | void
     effect?: boolean
     setHover?:  React.SetStateAction<boolean> 
+    NavMenu?: JSX.Element
 }

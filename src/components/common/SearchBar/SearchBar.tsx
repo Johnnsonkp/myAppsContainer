@@ -7,11 +7,14 @@ import { SearchBarProps } from './SearchBar.types';
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
     
     return  (
-        <Input 
-            placeholder="Basic usage" 
-            className={props.className} 
-            style={styles.searchBarStyle.display}
-            onChange={props.onChange}
-        />
+        <>
+            <div>{props.searchIcon}</div>
+            <Input 
+                placeholder="Basic usage" 
+                className={props.className} 
+                style={styles.searchBarStyle.display}
+                onChange={props.onChange}
+            />
+        </>
     )
 }
