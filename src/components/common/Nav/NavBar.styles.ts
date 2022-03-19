@@ -18,13 +18,15 @@ export const navBarStyles = {
         position: 'absolute' as 'absolute', 
         top: '1px', 
         left: '1px', 
-        height: '200px', 
-        width: '250px', 
-        border: '1px solid red', 
+        height: '99%', 
+        width: '300px', 
+        border: '1px solid #111', 
         background: '#fff', 
         zIndex: '2',
         paddingTop: '2px',
-        paddingLeft: '8px'
+        paddingLeft: '8px',
+        boxShadow: 'rgb(0 0 0 / 30%) 0px 25.6px 57.6px 0px',
+        boxSizing: 'border-box' as 'border-box'
     },
     onMouseEnter: {
         color: '#08c',

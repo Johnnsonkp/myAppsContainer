@@ -4,9 +4,7 @@ import React, {useEffect, useState} from 'react';
 
 import {AppstoreOutlined} from '@ant-design/icons';
 import { FetchResponse } from './App.modules';
-import Icon from '@ant-design/icons';
 import { InputType } from './components/common/SearchBar/SearchBar.module';
-import { JSXElementConstructor } from 'react';
 import MenuDropDown from './components/common/MenuDropdown';
 import { MyAppsComponent } from './pages/MyApps';
 import NavBar from './components/common/Nav';
@@ -18,8 +16,6 @@ const App: React.FC = () => {
   const [apps, fetchApps] = useState<FetchResponse['results']>()
   const [toggleSidePanel, setToggleSidePanel] = useState<boolean>(false)
   const [hover, isHover] = useState<boolean>(false)
-  // const SearchComponent: JSXElementConstructor<p> = () => <SearchOutlined />
-
 
   useEffect(() => {
     fetch('apps.json')

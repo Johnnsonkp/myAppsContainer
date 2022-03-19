@@ -1,9 +1,10 @@
+import * as styles from './searchBar.styles'
+
 import { SearchBar } from './SearchBar';
-import SearchOutlined from 'antd'
 
 export const searchBarComponent = () => {
     return (
-        <SearchBar/>
+        <SearchBar style={styles.searchBarStyle.display}/>
     )
 }
 

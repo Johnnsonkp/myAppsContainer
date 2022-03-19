@@ -1,10 +1,3 @@
-import { css } from '@emotion/react'
-
-export const searchBar = css`
-    display: none;
-    border: '1px solid red;
-`
-
 export const searchBarStyle = {
     display: {
         fontFamily: 'inherit',
@@ -17,11 +10,13 @@ export const searchBarStyle = {
         color: 'rgb(50, 49, 48)',
         flex: '1 1 0px',
         minWidth: '0px',
-        width: '380px',
+        // width: '380px',
+        // width: '200px',
         height: '30px',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         padding: '0px 10px 0.5px',
-        borderRadius: '2px'
+        borderRadius: '2px',
+        display: 'none'
     }
 }

@@ -18,13 +18,13 @@ const NavBar: React.FC<NavBarProps> = (props) => {
                         >
                             {props.appsDisplayIcon}
                         </span>
-                        <h2 style={{paddingLeft: '10px'}}>Apps</h2>
+                        <h2 style={{paddingLeft: '10px', marginTop: '20px'}}>Apps</h2>
                         <div style={{transform: 'scale(0.6)', display: 'flex', justifyContent: 'space-between', width: '100%', position: 'relative', left: '-15px'}}>
                             {props.appSidePanelDisplay}
                         </div>
                     </div>
                 }
-            <div style={{flex: '0.6'}}>
+            <div style={{flex: '0.45', justifyContent: 'flex-start', position: 'relative', right: '10%'}}>
                 {props.searchBarComponent}
             </div>
             <div>

@@ -1,20 +1,15 @@
-import * as styles from './searchBar.styles'
-
 import { Input } from 'antd';
 import React from 'react';
 import { SearchBarProps } from './SearchBar.types';
 
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
-    
+    const { Search } = Input
     return  (
-        <>
-            <div>{props.searchIcon}</div>
-            <Input 
-                placeholder="Basic usage" 
-                className={props.className} 
-                style={styles.searchBarStyle.display}
-                onChange={props.onChange}
-            />
-        </>
+        <Search 
+            placeholder="Search apps" 
+            className={props.className} 
+            onChange={props.onChange}
+            style={props.style}
+        />
     )
 }
