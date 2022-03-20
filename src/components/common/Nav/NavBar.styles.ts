@@ -18,24 +18,30 @@ export const navBarStyles = {
         position: 'absolute' as 'absolute', 
         top: '1px', 
         left: '1px', 
-        height: '99%', 
-        width: '300px', 
-        border: '1px solid #111', 
+        height: '100%', 
+        width: '320px', 
+        // borderTop: '1px solid #111', 
+        // borderRight: '1px solid #111',
+        borderTop: '1px solid transparent', 
+        borderRight: '1px solid transparent',
         background: '#fff', 
         zIndex: '2',
         paddingTop: '2px',
         paddingLeft: '8px',
-        boxShadow: 'rgb(0 0 0 / 30%) 0px 25.6px 57.6px 0px',
-        boxSizing: 'border-box' as 'border-box'
+        boxShadow: 'rgb(0 0 0 / 30%) 0px 25.6px 70.6px 15px',
+        boxSizing: 'border-box' as 'border-box',
+        overflow: 'hidden'
     },
     onMouseEnter: {
         color: '#08c',
         padding: '10px',
-        fontSize: '25px', cursor: 'pointer',
+        fontSize: '25px', 
+        cursor: 'pointer',
     },
     onMouseLeave: {
         color: '#111',
         padding: '10px',
-        fontSize: '25px', cursor: 'pointer',
+        fontSize: '25px', 
+        cursor: 'pointer',
     }
 }
