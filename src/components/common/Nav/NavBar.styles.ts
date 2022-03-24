@@ -20,8 +20,6 @@ export const navBarStyles = {
         left: '1px', 
         height: '100%', 
         width: '320px', 
-        // borderTop: '1px solid #111', 
-        // borderRight: '1px solid #111',
         borderTop: '1px solid transparent', 
         borderRight: '1px solid transparent',
         background: '#fff', 

@@ -4,7 +4,7 @@ export interface MyAppsProps {
     onHover?: () => void
     image: string
     styles?: React.CSSProperties
-    onMouseEnter?: React.MouseEventHandler<HTMLDivElement>
-    onMouseLeave?: React.MouseEventHandler<HTMLDivElement>
     imageStyle?: React.CSSProperties
+    effect?: boolean
+    className?: string | undefined
 }

@@ -10,6 +10,7 @@ import { MyAppsComponent } from './pages/MyApps';
 import NavBar from './components/common/Nav';
 import { PrimaryContainer } from './components/Container';
 import { SearchBar } from './components/common/SearchBar/SearchBar';
+import { ToolBarComponent } from './components/ToolBar';
 
 const App: React.FC = () => {
   const [input, searchedInput] = useState<InputType['text']>()
@@ -30,12 +31,11 @@ const App: React.FC = () => {
       console.log(results.title === e.target.value)
     })
   }
-
-  return (
-    <div className="App">
+  const NavComponent = () => {
+    return (
       <NavBar 
         searchBarComponent={<SearchBar onChange={(e) => handleSearchChange(e)}/>}
-        appSidePanelDisplay={<MyAppsComponent apps={apps}/>}
+        appSidePanelDisplay={<MyAppsComponent apps={apps} />}
         appsDisplayIcon={<AppstoreOutlined 
           style={{ fontSize: '18px', cursor: 'pointer' }}
           onClick={() => setToggleSidePanel(!toggleSidePanel)}
@@ -46,9 +46,14 @@ const App: React.FC = () => {
         effect={toggleSidePanel}
         NavMenu={<MenuDropDown title={'My Apps'}/>}
       />
-      <PrimaryContainer 
-        Component={<MyAppsComponent apps={apps}/>}
-      />
+    )
+  }
+
+  return (
+    <div className="App">
+      <NavComponent />
+      {/* <ToolBarComponent component={<MyAppsComponent apps={apps} />}/> */}
+      <MyAppsComponent apps={apps} />
     </div>
   );
 }

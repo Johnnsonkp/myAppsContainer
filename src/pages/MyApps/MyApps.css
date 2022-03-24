@@ -1,0 +1,4 @@
+.appComp:hover{
+    border: 1px solid transparent;
+    box-shadow: rgb(0 0 0 / 15%) 0px 25.6px 30.6px 5px;
+}
