@@ -2,20 +2,19 @@ export const styles = {
     appContainer:  {
         textDecoration: 'none',
         display: 'flex',
-        // justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
         width: '100%',
         position: 'relative',
         flexDirection: 'row',
-        gap: '8px',
-        padding: '20px 30px 30px 30px',
+        gap: '20px',
+        // padding: '20px 30px 30px 30px',
+        padding: '10px 10px 10px 10px',
         userSelect: 'none',
         color: 'rgb(0, 0, 0)',
-        // maxWidth: '170px',
         maxWidth: '100%',
         textAlign: 'left',
-        maxHeight: '150px',
+        maxHeight: '100px',
         overFlow: 'hidden',
         border: '1px solid red',
         cursor: 'pointer', 
@@ -37,16 +36,18 @@ export const styles = {
         // maxWidth: '80%',
         // margin: 'auto',
         // maxHeight: '150px',
-        maxWidth: '170px',
+        // maxWidth: '170px',
+        maxWidth: '200px',
         // maxWidth: '500px',
         maxHeight: '150px',
         overFlow: 'hidden',
-        border: '1px solid red',
-        cursor: 'pointer'
+        border: '1px solid transparent',
+        cursor: 'pointer',
+        margin: '15px auto'
     },
     img: {
-        width: '100px',
-        height: '90px',
+        width: '110px',
+        height: '110px',
         position: 'relative',
         borderRadius: '11px'
     },
@@ -57,10 +58,17 @@ export const styles = {
         display: 'flex',
     },
     flexedRow: {
-        display: 'flex',
-        padding: '30px 30px',
-        margin: '10px',
-        justifyContent: 'space-around'
+        // display: 'flex',
+        padding: '10px 30px',
+        // margin: '10px',
+        // justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        width: '80%',
+        margin: 'auto',
+        // border: '1px solid red',
+
+        display: 'grid',
+        gridTemplateColumns: '20% 20% 20% 20% 20%',
     },
     flexedColumn: {
         display: 'flex',
@@ -68,9 +76,11 @@ export const styles = {
         padding: '30px 30px',
         margin: '10px',
         justifyContent: 'space-around',
-        border: '1px solid red'
+        // border: '1px solid red'
     },
     toolBarButton: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        backgroundColor: 'transparent',
+        border: 'none'
     }
 }

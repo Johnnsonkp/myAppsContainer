@@ -1,5 +1,11 @@
 import "./MyApps.css";
 
+import {
+  AlignCenterOutlined,
+  AlignRightOutlined,
+  AppstoreOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 
 import { MyApps } from "./MyApps";
@@ -9,13 +15,27 @@ export const MyAppsComponent = (props) => {
   const [appLayout, setAppLayout] = useState(false);
   return (
     <div>
-      <h1>Testing</h1>
-      <button
-        style={styles.toolBarButton}
-        onClick={() => setAppLayout(!appLayout)}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "10px 30px",
+          width: "82%",
+          margin: "auto",
+        }}
       >
-        Grid
-      </button>
+        <h1 style={{ textDecoration: "overline" }}>Testing</h1>
+        <button
+          style={styles.toolBarButton}
+          onClick={() => setAppLayout(!appLayout)}
+        >
+          {appLayout ? (
+            <UnorderedListOutlined style={{ fontSize: "20px" }} />
+          ) : (
+            <AppstoreOutlined style={{ fontSize: "20px" }} />
+          )}
+        </button>
+      </div>
 
       <div style={appLayout ? styles.flexedRow : styles.flexedColumn}>
         {props.apps &&

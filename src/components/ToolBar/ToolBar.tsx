@@ -3,7 +3,7 @@ import { ColumnContainer, PrimaryContainer } from "../Container"
 import { ToolBarProps } from "./ToolBar.modules"
 import {styles} from './ToolBar.styles'
 
-const ComponentContainer: React.FC<ToolBarProps> = (props) => {
+const ComponentContainer = (props:{component: JSX.Element}) => {
     return(
         <div>{props.component}</div>
     )
