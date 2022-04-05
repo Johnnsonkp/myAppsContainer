@@ -1,60 +1,50 @@
 import {Button, Form, Input, Select, Spin, Upload} from 'antd';
 import { CheckOutlined, LoadingOutlined, UploadOutlined } from '@ant-design/icons';
-import { FetchResponse, FetchedJSONDataStructure, ImageDataStructure } from '../../../App.modules';
+import { FetchResponse, FetchedJSONDataStructure } from '../../../App.modules';
 import React, {useEffect, useState} from 'react';
 
-import { FileUploaderComponent } from './FileUploader';
 import { FormProps } from "./Form.modules"
 import { addNewApp } from '../../../services/appServices';
 import { props } from './ImageUpload';
 import { styles } from "./Forms.styles"
 
-export const AppForm: React.FC<FormProps> = (props) => {
+export const UpdateAppForm: React.FC<FormProps> = (props) => {
     const [form] = Form.useForm<any>();
     const appsArray = props.apps
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
     const [timeoutTimer, timeoutTimerComplete] = useState<boolean>(false)
-    const [refreshing, setRefreshing] = useState<boolean>(false)
-    const [selectedFile, setSelectedFile] = useState<any>(null);
+    
     const [formData, setFormData] = useState<FetchedJSONDataStructure>()
 
     const normFile = (e: any) => {
-        return e.fileList
+        console.log('Upload event:', e);
+        console.log('Upload event:', e.file.type);
+        console.log('Upload event:', e.file.name);
+        // if (Array.isArray(e)) {
+        //   return e;
+        // }
+        // return e && e.fileList;
+        // return e.file.type
+        return e.file.name
     };
-    const handleFileInput = (e: any, onFileSelect: any) => {
-        onFileSelect(e.target.files[0])
-    }
+    
     
     const FormComp = () => {
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         }
-        
-        const onSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
-            const newImageData = new FormData()
-            const imageInput = form.getFieldValue('image')
-            newImageData.append('file', imageInput[0].originFileObj)
-            newImageData.append('upload_preset', 'my-uploads')
-
-            const data = await fetch('https://api.cloudinary.com/v1_1/dcssugmik/image/upload', {
-                method: 'POST',
-                body: newImageData,
-            }).then(r => r.json())
-            .then((response) => {
-                setFormData({
-                    id: appsArray && appsArray.length + 1 || 1,
-                    title: form.getFieldValue('title'),
-                    group: form.getFieldValue('groups'),
-                    url: form.getFieldValue('url'),
-                    image: response.url
-                })
+        const onSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+            setFormData({
+                id: appsArray && appsArray.length + 1,
+                title: form.getFieldValue('title'),
+                group: form.getFieldValue('groups'),
+                url: form.getFieldValue('url'),
+                image: form.getFieldValue('image')
             })
-            setRefreshing(true)
         }
 
         useEffect( () => {
-            if(refreshing){
+            if(formData?.id){
                 addNewApp(formData).then(() => {
-                    setRefreshing(false)
                     setTimeout(() => {
                         timeoutTimerComplete(true)
                     }, 1800)
@@ -62,9 +52,8 @@ export const AppForm: React.FC<FormProps> = (props) => {
                         window.location.reload()
                     }, 2200)
                 })
-                return 
             }
-        }, [refreshing])
+        }, [onSubmit])
         
         return (
             <Form
@@ -108,17 +97,21 @@ export const AppForm: React.FC<FormProps> = (props) => {
                 <Form.Item
                     name="image"
                     label="Image"
+                    // valuePropName="fileList"
                     getValueFromEvent={normFile}
+                    // rules={[{ required: true }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
                 >
                     <Upload 
-                        name="logo" 
-                        // action={(e) => e.preventDefault()} 
-                        listType="picture"
+                        // name="logo" 
+                        // action={`src/images/`} 
+                        // listType="picture"
+                        // listType="picture"
+                        {...props}
                     >
                         <Button icon={<UploadOutlined />}>Click to upload</Button>
                     </Upload>
                 </Form.Item>
-                
+
                 <Form.Item wrapperCol={{ span: 12, offset: 4 }}>
                     <Button 
                         type="primary" 

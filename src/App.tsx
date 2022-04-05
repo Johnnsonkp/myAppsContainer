@@ -1,8 +1,9 @@
 import './App.css';
 
-import {AppstoreOutlined, PlusOutlined} from '@ant-design/icons';
+import {AppstoreOutlined, DownOutlined, PlusOutlined} from '@ant-design/icons';
 import { FormToggle, FormToggleButtonComp } from './components/common/Buttons';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import { customFetch, customURL, loadApps } from './services/appServices';
 
 import { AppForm } from './components/common/forms';
 import { Button } from 'antd';
@@ -19,41 +20,17 @@ const App: React.FC = () => {
   const [toggleSidePanel, setToggleSidePanel] = useState<boolean>(false)
   const [hover, isHover] = useState<boolean>(false)
   const [formToggler, setFormToggler] = useState<boolean>(false)
-
-  const loadApps = async () => {
-      // const response = await fetch('apps.json')
-      const response = await fetch('http://localhost:3000/appsarray/')
-      const data = await response.json()
-      const appsData = await data
-
-      return fetchApps(appsData)
-  }
+  const [refresh, setRefresh] = useState<boolean>(true)
+  const [appsGroups, setAppsGroup] = useState<string>('All apps')
 
   useEffect(() => {
-    loadApps()
-  }, [])
+    if(refresh){
+      console.log('refresh:', refresh)
+      loadApps(customURL).then((appsData) => fetchApps(appsData))
+    }
+    setRefresh(false)
+  }, [refresh])
 
-  const createSprintComponent = async () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        id: 13, 
-        title: "sprints component", 
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-      })
-    };
-    return fetch('http://localhost:3000/appsarray/', requestOptions)
-      .then(response => response.json())
-      .then((response) => {
-        console.log(response)
-        console.log('apps:', apps)
-      })
-      .then(() => loadApps())
-      .catch((response) => {
-        console.error(response.error)
-      })
-  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     searchedInput(e.target.value)
@@ -74,7 +51,7 @@ const App: React.FC = () => {
           />}
         setHover={hover}
         effect={toggleSidePanel}
-        NavMenu={<MenuDropDown title={'My Apps'}/>}
+        NavMenu={<MenuDropDown dropDownIcon={<DownOutlined />} title={'My Apps'} />}
       />
     )
   }
@@ -82,12 +59,18 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <NavComponent />
-      <MyAppsComponent apps={apps} />
+      <MyAppsComponent 
+        apps={apps} 
+        refresh={refresh} 
+        setRefresh={setRefresh} 
+        appsGroups={appsGroups}
+        setFormToggler={setFormToggler}
+      />
         <FormToggle
           formToggler={formToggler} 
           setFormToggler={setFormToggler}
         />
-        <AppForm formToggle={formToggler}/>
+        <AppForm formToggle={formToggler} apps={apps}/>
     </div>
   );
 }

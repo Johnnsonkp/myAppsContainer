@@ -12,6 +12,7 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
     "antd": "^4.19.2",
+    "axios": "^0.26.1",
     "csstype": "^3.0.11",
     "json-server": "^0.17.0",
     "less": "2.7.2",

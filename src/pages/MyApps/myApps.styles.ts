@@ -19,7 +19,8 @@ export const styles = {
         border: '1px solid red',
         cursor: 'pointer', 
         justifyContent: 'flex-start',
-        transform: 'scale(0.8)'
+        transform: 'scale(0.8)',
+        zIndex: '1',
     },
     columnContainer:  {
         textDecoration: 'none',
@@ -30,20 +31,16 @@ export const styles = {
         position: 'relative',
         flexDirection: 'column',
         gap: '8px',
-        padding: '20px 30px 30px 30px',
+        padding: '20px 30px 0px 30px',
         userSelect: 'none',
         color: 'rgb(0, 0, 0)',
-        // maxWidth: '80%',
-        // margin: 'auto',
-        // maxHeight: '150px',
-        // maxWidth: '170px',
         maxWidth: '200px',
-        // maxWidth: '500px',
-        maxHeight: '150px',
+        maxHeight: '160px',
         overFlow: 'hidden',
-        border: '1px solid transparent',
+        border: '1px solid red',
         cursor: 'pointer',
-        margin: '15px auto'
+        margin: '15px auto',
+        zIndex: '1'
     },
     img: {
         width: '110px',
@@ -55,18 +52,13 @@ export const styles = {
         fontSize: '14px',
         marginTop: '5px',
         textTransform: 'capitalize',
-        display: 'flex',
+        display: 'flex'
     },
     flexedRow: {
-        // display: 'flex',
         padding: '10px 30px',
-        // margin: '10px',
-        // justifyContent: 'space-around',
         flexWrap: 'wrap',
         width: '80%',
         margin: 'auto',
-        // border: '1px solid red',
-
         display: 'grid',
         gridTemplateColumns: '20% 20% 20% 20% 20%',
     },

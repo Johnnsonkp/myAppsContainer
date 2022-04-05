@@ -1,18 +1,31 @@
 import "./MyApps.css";
 
 import {
-  AlignCenterOutlined,
-  AlignRightOutlined,
   AppstoreOutlined,
+  CloseCircleOutlined,
+  EditOutlined,
+  EllipsisOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
+import { deleteApp, updateApp } from "../../services/appServices";
 
+import MenuDropDown from "../../components/common/MenuDropdown";
 import { MyApps } from "./MyApps";
 import { styles } from "./myApps.styles";
 
 export const MyAppsComponent = (props) => {
-  const [appLayout, setAppLayout] = useState(false);
+  const [appLayout, setAppLayout] = useState(true);
+
+  const deleteAppFunction = (e, id) => {
+    e.preventDefault();
+    return deleteApp(id).then(() => props.setRefresh(true));
+  };
+  const updateAppFunction = (e, id) => {
+    e.preventDefault();
+    return updateApp(id).then(() => props.setRefresh(true));
+  };
+
   return (
     <div>
       <div
@@ -24,7 +37,7 @@ export const MyAppsComponent = (props) => {
           margin: "auto",
         }}
       >
-        <h1 style={{ textDecoration: "overline" }}>Testing</h1>
+        <h1 style={{ textDecoration: "overline" }}>{props.appsGroups}</h1>
         <button
           style={styles.toolBarButton}
           onClick={() => setAppLayout(!appLayout)}
@@ -51,6 +64,45 @@ export const MyAppsComponent = (props) => {
                 imageStyle={styles.img}
                 titleStyles={styles.title}
                 className={"appComp"}
+                url={results.url}
+                elipsis={<EllipsisOutlined rotate={90} />}
+                MenuDropDown={
+                  <MenuDropDown
+                    menuItem1={" Update App"}
+                    menuItem1Icon={<EditOutlined />}
+                    menuItem2={" Delete App"}
+                    menuItemId={results.id}
+                    menuItem2Icon={
+                      <CloseCircleOutlined
+                        style={{
+                          fontSize: "16px",
+                          color: "red",
+                          zIndex: "3000",
+                        }}
+                        onClick={(e) => deleteAppFunction(e, results.id)}
+                      />
+                    }
+                    menuItem1Click={props.setFormToggler}
+                    menuItem2Click={deleteAppFunction}
+                    dropDownIcon={<EllipsisOutlined rotate={90} />}
+                    // setFormToggler={props.setFormToggler}
+                  />
+                }
+                elipsisStyle={{
+                  position: "relative",
+                  left: "65%",
+                  bottom: "100%",
+                }}
+                deleteButton={
+                  <CloseCircleOutlined
+                    style={{
+                      fontSize: "25px",
+                      color: "red",
+                      zIndex: "3000",
+                    }}
+                    onClick={(e) => deleteAppFunction(e, results.id)}
+                  />
+                }
               />
             );
           })}
