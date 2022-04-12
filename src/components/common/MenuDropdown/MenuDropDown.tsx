@@ -16,13 +16,10 @@ export const MenuDropDown: React.FC<MenuDropDownProps> = (props) => {
         console.log('click', e);
     }
 
-    // const handleMenuClick = () => {
-    //     return props.deleteAppFunction(e, results.id)
-    // }
-      
     const menu: React.ReactElement<any, string> = (
         <Menu>
-            <Menu.Item key="1" onClick={(e) => props.menuItem1Click && props.menuItem1Click(true)}>
+            <Menu.Item key="1" 
+                onClick={(e) => props.menuItem1Click && props.menuItem1Click(true)}>
                 <span >
                     <span>{props.menuItem1Icon}
                     {props.menuItem1 || 'All apps'} 

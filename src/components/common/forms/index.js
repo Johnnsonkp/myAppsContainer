@@ -1,4 +1,5 @@
 import { AppForm } from "./AppForm";
+import { UpdateAppForm } from "./AppFormUpdate";
 import { styles } from "./Forms.styles";
 
 // export const AppFormComp = (props) => {
@@ -10,4 +11,4 @@ import { styles } from "./Forms.styles";
 //   );
 // };
 
-export { AppForm };
+export { AppForm, UpdateAppForm };

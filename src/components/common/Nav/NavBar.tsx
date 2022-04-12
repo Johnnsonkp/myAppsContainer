@@ -2,6 +2,8 @@ import AppsLogo from './APPs.svg'
 import DisplayBadge from '../Badge';
 import { NavBarProps } from './NavBar.types';
 import React from 'react';
+// import appsLogo from './appsLogo.png'
+import appsLogo from './appsTechLogo.png'
 import { navBarStyles } from './NavBar.styles';
 
 const NavBar: React.FC<NavBarProps> = (props) => {
@@ -9,7 +11,8 @@ const NavBar: React.FC<NavBarProps> = (props) => {
         <div style={navBarStyles.display}>
             <div style={props.setHover? navBarStyles.onMouseEnter : navBarStyles.onMouseLeave}>
                 {props.appsDisplayIcon}
-                <img src={AppsLogo} style={navBarStyles.AppLogo}/>
+                {/* <img src={AppsLogo} style={navBarStyles.AppLogo}/> */}
+                <img src={appsLogo} style={navBarStyles.AppLogo}/>
                 <span style={{marginLeft: '25px'}}>{props.NavMenu}</span>
             </div>
                 {props.effect && <div style={navBarStyles.effectStyle}>

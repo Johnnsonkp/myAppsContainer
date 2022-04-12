@@ -2,9 +2,9 @@ import {Button, Form, Input, Select, Spin, Upload} from 'antd';
 import { CheckOutlined, LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { FetchResponse, FetchedJSONDataStructure } from '../../../App.modules';
 import React, {useEffect, useState} from 'react';
+import { addNewApp, updateApp } from '../../../services/appServices';
 
 import { FormProps } from "./Form.modules"
-import { addNewApp } from '../../../services/appServices';
 import { props } from './ImageUpload';
 import { styles } from "./Forms.styles"
 
@@ -20,12 +20,8 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
         console.log('Upload event:', e);
         console.log('Upload event:', e.file.type);
         console.log('Upload event:', e.file.name);
-        // if (Array.isArray(e)) {
-        //   return e;
-        // }
-        // return e && e.fileList;
-        // return e.file.type
-        return e.file.name
+
+        return e.file.name || props.image
     };
     
     
@@ -34,7 +30,7 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
         }
         const onSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
             setFormData({
-                id: appsArray && appsArray.length + 1,
+                id: props.id,
                 title: form.getFieldValue('title'),
                 group: form.getFieldValue('groups'),
                 url: form.getFieldValue('url'),
@@ -44,11 +40,12 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
 
         useEffect( () => {
             if(formData?.id){
-                addNewApp(formData).then(() => {
+                updateApp(formData).then(() => {
                     setTimeout(() => {
                         timeoutTimerComplete(true)
                     }, 1800)
                     setTimeout(() => {
+                        timeoutTimerComplete(false)
                         window.location.reload()
                     }, 2200)
                 })
@@ -66,6 +63,7 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
                 <Form.Item 
                     label="Title"
                     name="title" 
+                    initialValue={props.title}
                 >
                     <Input 
                         placeholder="App name"
@@ -76,6 +74,7 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
                 <Form.Item 
                     label="Group"
                     name="groups"
+                    initialValue={props.group}
                 >
                     <Select
                         placeholder="Add app to group"
@@ -90,6 +89,7 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
                     name="url"
                     label="URL"
                     rules={[{ required: true }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
+                    initialValue={props.url}
                 >
                     <Input placeholder="App URL" />
                 </Form.Item>
@@ -106,7 +106,7 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
                         // action={`src/images/`} 
                         // listType="picture"
                         // listType="picture"
-                        {...props}
+                        // {...props}
                     >
                         <Button icon={<UploadOutlined />}>Click to upload</Button>
                     </Upload>
@@ -126,9 +126,9 @@ export const UpdateAppForm: React.FC<FormProps> = (props) => {
     }
 
     return (
-        <div style={props.formToggle? styles.display : styles.hide }>
-            <div style={props.formToggle? styles.overlay : styles.hide }></div>
-            <h2 style={styles.title}>Add a new app</h2>
+        <div style={props.updateFormToggle? styles.display : styles.hide }>
+            <div style={props.updateFormToggle? styles.overlay : styles.hide }></div>
+            <h2 style={styles.title}>Update app</h2>
             <FormComp />
         </div>
     )

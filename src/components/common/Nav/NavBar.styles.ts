@@ -3,13 +3,17 @@ export const navBarStyles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0px 10px',
+        // padding: '0px 10px',
+        padding: '0px 30px 0px 10px',
         backgroundColor: 'rgb(245, 243, 241)',
         borderBottom: '1px solid rgb(234, 234, 234)',
-        height: '48px'
+        height: '48px',
+        overflow: 'hidden'
     },
     AppLogo: {
         width: '110px', 
+        // width: '110px',
+        height: '95px',
         alignSelf: 'center',
         justifyContent: 'flex-end',
         marginLeft: '15px'

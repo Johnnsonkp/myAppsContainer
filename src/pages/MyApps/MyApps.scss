@@ -1,0 +1,11 @@
+.elipsesStyle{
+    visibility: hidden;
+}
+
+.appComp:hover{
+    border: 1px solid transparent;
+    box-shadow: rgba(0 ,0 ,0 ,0.15) 0px 25.6px 30.6px 5px;
+    .elipsesStyle{
+        visibility: visible;
+    }
+}

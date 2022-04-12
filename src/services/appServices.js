@@ -64,20 +64,17 @@ export function addNewApp(newAppData) {
 // };
 
 export function updateApp(newAppData) {
-  return fetch(`http://localhost:3000/apps/${newAppData.id}`, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: newAppData.id,
-      title: newAppData.title,
-      image: newAppData.image ? newAppData.image : null,
-      group: newAppData.group,
-      url: newAppData.url,
-    }),
-  }).then((res) => res.json());
+  return fetch(
+    `https://sheet.best/api/sheets/e639cc5d-2203-4c98-bc4a-e2182b1eca35/id/*${newAppData.id}`,
+    {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAppData),
+    }
+  ).then((res) => res.json());
 }
 
 // export const uploadFileToJSON = () => {

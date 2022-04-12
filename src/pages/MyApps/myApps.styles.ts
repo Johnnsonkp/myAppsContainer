@@ -7,8 +7,7 @@ export const styles = {
         width: '100%',
         position: 'relative',
         flexDirection: 'row',
-        gap: '20px',
-        // padding: '20px 30px 30px 30px',
+        gap: '30px',
         padding: '10px 10px 10px 10px',
         userSelect: 'none',
         color: 'rgb(0, 0, 0)',
@@ -16,37 +15,39 @@ export const styles = {
         textAlign: 'left',
         maxHeight: '100px',
         overFlow: 'hidden',
-        border: '1px solid red',
+        border: '1px solid lightgray',
+        borderRadius: '8px',
         cursor: 'pointer', 
         justifyContent: 'flex-start',
-        transform: 'scale(0.8)',
-        zIndex: '1',
+        transform: 'scaleY(0.8) scaleX(0.8)',
+        zIndex: '1'
     },
     columnContainer:  {
         textDecoration: 'none',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         height: '100%',
         position: 'relative',
         flexDirection: 'column',
         gap: '8px',
-        padding: '20px 30px 0px 30px',
+        padding: '20px 30px 0px 20px',
         userSelect: 'none',
         color: 'rgb(0, 0, 0)',
         maxWidth: '200px',
         maxHeight: '160px',
         overFlow: 'hidden',
-        border: '1px solid red',
         cursor: 'pointer',
         margin: '15px auto',
-        zIndex: '1'
+        zIndex: '1',
+        fontSize: '25px'
+        
     },
     img: {
-        width: '110px',
-        height: '110px',
+        width: '150px',
+        height: '130px',
         position: 'relative',
-        borderRadius: '11px'
+        borderRadius: '5px'
     },
     title: {
         fontSize: '14px',
@@ -68,7 +69,6 @@ export const styles = {
         padding: '30px 30px',
         margin: '10px',
         justifyContent: 'space-around',
-        // border: '1px solid red'
     },
     toolBarButton: {
         cursor: 'pointer',

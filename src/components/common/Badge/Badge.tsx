@@ -2,9 +2,9 @@ import { Avatar, Button } from 'antd';
 import React, { useState } from 'react';
 
 export const DisplayBadge: React.FC = () => {
-    const UserList = ['U', 'Lucy', 'Tom', 'Edward'];
+    const UserList = ['JN', 'Lucy', 'Tom', 'Edward'];
     const GapList = [4, 3, 2, 1];
-    const ColorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
+    const ColorList = ['transparent','#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
 
     const [user, setUser] = useState(UserList[0]);
     const [color, setColor] = useState(ColorList[0]);
@@ -21,7 +21,7 @@ export const DisplayBadge: React.FC = () => {
     };
     return (
       <>
-        <Avatar style={{ backgroundColor: color, verticalAlign: 'middle' }} size="large" gap={gap}>
+        <Avatar style={{ backgroundColor: color, verticalAlign: 'middle', color: '#111', border: '1.5px solid lightgrey' }} size="large" gap={gap}>
           {user}
         </Avatar>
         {/* <Button

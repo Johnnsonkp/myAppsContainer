@@ -135,7 +135,8 @@ export const AppForm: React.FC<FormProps> = (props) => {
     return (
         <div style={props.formToggle? styles.display : styles.hide }>
             <div style={props.formToggle? styles.overlay : styles.hide }></div>
-            <h2 style={styles.title}>Add a new app</h2>
+            <h2 style={styles.title}>Add new app</h2>
+            <hr style={{marginBottom: '30px', color: 'lightgrey'}}></hr>
             <FormComp />
         </div>
     )
